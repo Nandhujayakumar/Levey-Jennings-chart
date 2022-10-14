@@ -13,9 +13,8 @@ import csv
 
 
 
-data = pd.read_csv('C:/Users/nandh/Downloads/lj_chart1.csv')
-#print(data)
-
+data = pd.read_csv(#dataframe.csv - your path to csv file)
+print(data)
 column_names = list(data.columns)
 col = np.array(column_names)
 print(col)
@@ -23,6 +22,7 @@ print(col)
 
 #give function for recursion
 def testinput():
+    global x
     x = pyautogui.prompt('Enter Test name ')
     a=0
     for i in col:
@@ -48,14 +48,8 @@ testinput()
 
 
 
-test= data['Glucose']
+test= data[x]
 day = np.array(data['Day'])
-
-
-
-
-
-
 mean = np.array(test.mean())
 m = mean.reshape(1,-1)
 print(mean)
@@ -84,13 +78,6 @@ print("sd +3 = ", sd_3)
 
 
 
-
-
-
-
-
-
-
 #negative sd
 
 #sd -1
@@ -111,7 +98,7 @@ print("sd -3 = ", sd_negative3)
 plt.figure(figsize=(15, 7))
 Day = data['Day']
 
-test_data = data[['Glucose']].mean(axis=1)
+test_data = data[[x]].mean(axis=1)
 
 
 plt.plot(Day,test_data,'g', label='Data', marker= "o")
@@ -142,16 +129,9 @@ plt.axhline(y= sd_negative3, color='black',label="SD +3" ,linestyle='-.', alpha=
 
 plt.xlabel('Day')
 plt.ylabel('Quality Value')
-plt.title("Qc Grapgh Of glucose")
+plt.title("Qc Grapgh of "+ x)
 ax = plt.subplot()
 ax.set_xticks(Day)
 plt.legend()
 plt.show()
-
-
-
-# In[ ]:
-
-
-
 
